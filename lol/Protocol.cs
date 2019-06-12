@@ -36,7 +36,7 @@ namespace lolgame
         public ushort commandID;
         public object message;
 
-        public byte[] ToByteArray()
+        public byte[] Serialize()
         {
             byte[] buffer;
             using (MemoryStream ms = new MemoryStream())
@@ -47,6 +47,18 @@ namespace lolgame
             }
 
             return buffer;
+        }
+
+        public static NetCommand Deserialize(byte[] data)
+        {
+            NetCommand command;
+            using(MemoryStream ms = new MemoryStream(data))
+            {
+                BinaryFormatter formatter = new BinaryFormatter();
+                command = formatter.Deserialize(ms) as NetCommand;
+            }
+
+            return command;
         }
     }
 
