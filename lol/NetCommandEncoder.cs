@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace lol
 {
-    class NetCommandEncoder : MessageToMessageEncoder<NetCommand>
+    public class NetCommandEncoder : MessageToMessageEncoder<NetCommand>
     {
         protected override void Encode(IChannelHandlerContext context, NetCommand message, List<object> output)
         {

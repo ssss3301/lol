@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace lol
 {
-    class NetCommandDecoder : ByteToMessageDecoder
+    public class NetCommandDecoder : ByteToMessageDecoder
     {
         protected override void Decode(IChannelHandlerContext context, IByteBuffer input, List<object> output)
         {
@@ -19,7 +19,7 @@ namespace lol
 
             input.MarkReaderIndex();
             int dataLength = input.ReadInt();
-            if (input.ReadableBytes < dataLength + 4)
+            if (input.ReadableBytes < dataLength)
             {
                 input.ResetReaderIndex();
                 return;
